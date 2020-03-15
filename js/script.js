@@ -5,6 +5,7 @@ class ProductList {
         this.allProducts = [];
         this._fetchProducts();
         this._render();
+        this._goodsSum()
     }
 
     _fetchProducts() {
@@ -14,6 +15,15 @@ class ProductList {
             {id: 3, title: 'Keyboard', price: 5000},
             {id: 4, title: 'Gamepad', price: 4500},
         ];
+    }
+// Метод считает в цикле проходя по всему списку goods общую стоимость и выводит её
+// в консоль. Можно добавить свойство и внего сохранять или  просто возращать это значение
+    _goodsSum() {
+        let totalPrice = 0;
+        this.goods.forEach(item =>{
+            totalPrice += item.price
+        });
+        console.log('Общая стоимость всех товаров '+totalPrice+' рублей')
     }
 
     _render() {
