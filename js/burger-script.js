@@ -62,13 +62,13 @@ class Burger{
     _viewInfo() {
         const info = 
             `<div class="info-block">
-            <div class="info info-size">Ваш сочный ${this.size} гамбургер</div>
-            <div class="info info-stuffing">С добавлением ${this.stuffing}</div>
+            <div class="info info-size">Ваш сочный <span class="info-span">${this.size}</span> гамбургер</div>
+            <div class="info info-stuffing">С добавлением <span class="info-span">${this.stuffing}</span></div>
             <div class="info info-season">Дополнительно:</div>
-            <div class="info info-season">соус - ${this.toppingSeason}</div>
-            <div class="info info-season">майонез  - ${this.toppingMayonn}</div>
-            <div class="info info-calc">Всего калорий: ${this.calc}</div>
-            <div class="info info-price">К оплате: ${this.price} рублей</div>
+            <div class="info info-season">соус - <span class="info-span">${this.toppingSeason}</span></div>
+            <div class="info info-season">майонез  - <span class="info-span">${this.toppingMayonn}</span></div>
+            <div class="info info-calc">Всего калорий: <span class="info-span">${this.calc}</span></div>
+            <div class="info info-price">К оплате: <span class="info-span">${this.price}</span> рублей</div>
             </div>`;
         document.querySelector('.view-info').innerHTML = info;
     }
