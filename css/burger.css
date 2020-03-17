@@ -130,6 +130,18 @@ input.form_radio{
 input.form_radio:checked + .label-size::before,
 input.form_radio:checked + .label-stuffing::before
 {
-    background-color: #ffc801;
+    background-color: darkgoldenrod;
 }
-
+input+label{
+    display: flex;
+    align-items: flex-end;
+}
+.count-season,
+.count-mayonn{
+    color: #ffc801;
+    font-size: 25px;
+    font-weight: 700;
+}
+.home a{
+    color: #ffc801;
+}

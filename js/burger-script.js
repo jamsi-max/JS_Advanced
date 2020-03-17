@@ -31,19 +31,31 @@ class Burger{
         });
     }
 
+    _viewTopping(){
+        const season = document.querySelector(".count-season");
+        season.innerHTML = `${this.toppingSeason}`;
+        const mayonn = document.querySelector(".count-mayonn");
+        mayonn.innerHTML = `${this.toppingMayonn}`;
+
+    }
+
     addTopping(topping) {
         if(topping == 'season' && this.toppingSeason < 10){
-            this.toppingSeason += 1;  
+            this.toppingSeason += 1;
+            this._viewTopping();  
         } else if(topping == 'mayonn' && this.toppingMayonn < 10) {
             this.toppingMayonn += 1;
+            this._viewTopping();
         }
     }
 
     removeTopping(topping) {
         if(topping == 'season' && this.toppingSeason > 0){
-            this.toppingSeason -= 1;  
+            this.toppingSeason -= 1;
+            this._viewTopping();  
         } else if(topping == 'mayonn' && this.toppingMayonn > 0) {
             this.toppingMayonn -= 1;
+            this._viewTopping();
         }
     }
 
@@ -67,6 +79,7 @@ class Burger{
         this.price += this.toppingSeason*15;
         this.price += this.toppingMayonn*20;
         this.calc += this.toppingMayonn*5;
+        this._viewTopping();
         this._viewInfo();
     }
 }
