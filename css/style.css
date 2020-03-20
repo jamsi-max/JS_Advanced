@@ -26,3 +26,7 @@ a.nav-link{
 .nav-backet-icon{
     width: 12%;
 }
+.burger{
+    color: rgb(243, 66, 66) !important;
+    font-weight: bold !important;
+}
