@@ -15,28 +15,45 @@ const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-a
 //   };
 //   xhr.send();
 // };
+// **********************************************************
+// Функция getRequest используя Promise
+let getRequestPromise = (url, cb) => {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status !== 200) {
+                    reject(console.log('Error:',xhr.error));
+                } else {
+                    resolve(cb(xhr.responseText));
+                }
+            }
+        };
+        xhr.send();
+    }); 
+}
 
 class ProductList {
     constructor(container = '.products') {
         this.container = container;
         this.goods = [];
         this.allProducts = [];
-        //this._fetchProducts();
-        this._getProducts()
-        .then((data) => {
-            this.goods = [...data];
+        this._fetchProducts();
+        // this._getProducts()
+        // .then((data) => {
+        //     this.goods = [...data];
+        //     this._render();
+        // });
+    }
+
+    // ДЗ
+    _fetchProducts() {
+        getRequestPromise(`${API}/catalogData.json`, (data) => {
+            this.goods = JSON.parse(data);
             this._render();
         });
     }
-
-    // _fetchProducts() {
-    //     this.goods = [
-    //         {id: 1, title: 'Notebook', price: 20000},
-    //         {id: 2, title: 'Mouse', price: 1500},
-    //         {id: 3, title: 'Keyboard', price: 5000},
-    //         {id: 4, title: 'Gamepad', price: 4500},
-    //     ];
-    // }
 
 // Метод считает в цикле проходя по всему списку goods общую стоимость и выводит её
 // в консоль. Можно добавить свойство и внего сохранять или  просто возращать это значение
@@ -82,6 +99,7 @@ class ProductList {
 
 class ProductItem {
     constructor(product, img = "img/product-empty.jpg") {
+        // исправил баг сотображением именитовара с сервераприлетал другой ключ
         this.title = product.product_name;
         this.price = product.price;
         this.id = product.id;

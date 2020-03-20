@@ -120,13 +120,9 @@ input.form_radio{
 .label-stuffing:before {
     content: "";
     display: inline-block;
-<<<<<<< HEAD
     width: 22px;
     height: 22px;
-=======
-    width: 20px;
-    height: 20px;
->>>>>>> Сompleted the third task
+
     border: 3px solid #ffc801;
     border-radius: 50%;
     margin-right: 20px;
@@ -135,7 +131,7 @@ input.form_radio{
 input.form_radio:checked + .label-size::before,
 input.form_radio:checked + .label-stuffing::before
 {
-<<<<<<< HEAD
+
     background: url(../img/check-bg.png) 0 0 no-repeat;
     background-size: 20px 20px;
     background-position: 2px 1.33px;
@@ -157,8 +153,4 @@ input+label{
 .home a{
     color: #ffc801;
 }
-=======
-    background-color: #ffc801;
-}
 
->>>>>>> Сompleted the third task
