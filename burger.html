@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/burger.css">
+  <title>GeekBurger</title>
+</head>
+<body>
+  <h1>Сочный бургер</h1>
+  
+  <div class="burger-form">
+
+    <form name="burger-form" action="">
+
+      <div class="size-block">
+        <p><input id="size-1" class="form_radio" name="burger-size" type="radio" data-price=100 data-calc=40 value="большой" checked><label class="label-size" for="size-1">Большой</label></p>
+        <p><input id="size-2" class="form_radio" name="burger-size" type="radio" data-price=50 data-calc=20 value="маленький"><label class="label-size" for="size-2">Маленький</label></p>
+      </div>
+
+      <div class="stuffing-block">
+        <p><input id="stuffing-1" class="form_radio" name="burger-stuffing" type="radio" data-price=10 data-calc=20 value="сыра" checked><label class="label-stuffing"  for="stuffing-1">С сыром</label></p>
+        <p><input id="stuffing-2" class="form_radio" name="burger-stuffing" type="radio" data-price=20 data-calc=5 value="салата"><label class="label-stuffing" for="stuffing-2">С салатом</label></p>
+        <p><input id="stuffing-3" class="form_radio" name="burger-stuffing" type="radio" data-price=15 data-calc=10 value="картофеля"><label class="label-stuffing" for="stuffing-3">С картофелем</label></p>
+      </div>
+
+      <div class="toppings-block">
+
+        <div class="toppings-item">
+          <input class="button-toppings" type="button" value="-" onClick="burger.removeTopping('season');">
+          <div>Добавить немного соуса - <span class="count-season"></span></div>
+
+          <input class="button-toppings" type="button" value="+" onClick="burger.addTopping('season');">
+        </div>
+
+        <div class="toppings-item">
+          <input class="button-toppings" type="button" value="-" onClick="burger.removeTopping('mayonn');">
+
+          <div>Добавить домашнего майонеза - <span class="count-mayonn"></span></div>
+
+          <input class="button-toppings" type="button" value="+" onClick="burger.addTopping('mayonn');">
+        </div>
+      </div>
+
+        <p class="button-burger"><input class="creat-burger-button"  type="button" value="Собрать мой бургер" onClick="burger.main();"></p>
+      </form>
+
+      <p><div class="view-info"></div></p>
+      <div class="home">
+        <a href="index.html">на главную</a>
+      </div>
+  </div>
+  <script src="js/burger-script.js"></script>  
+</body>
+</html>
