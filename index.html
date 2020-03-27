@@ -17,6 +17,16 @@
                     <i class="fas fa-search"></i>
                 </button>
             </form>
+
+            <div class="search-view" v-if="searchLine">
+                <div class="search-item" v-for="item of filtrered">
+                    <img :src="imgCatalog" alt="Some img" >
+                    <p>{{item.product_name}}</p>
+                    <p>{{item.price}}₽</p>
+                </div>
+               <div v-if="!filtrered.length" class="search-empty"> <p>По вашему запросу ничего не найдено</p> </div> 
+            </div>
+                
             <button class="btn-cart" type="button" @click="cartView()">Корзина</button>
                 <div class="cart-block invisible">
                     <div class="cart-item" v-for="product of products" :data-id="product.id_product">
