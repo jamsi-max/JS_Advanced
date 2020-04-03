@@ -16,10 +16,13 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   handler(req, res, 'add', './server/db/userCart.json');
 });
-// localhost:3000/api/cart/123 // req.params.id
-// localhost:3000/api/cart/?var1='sfsf'&var2='ada' // req.query
+
 router.put('/:id', (req, res) => {
   handler(req, res, 'change', './server/db/userCart.json');
+});
+
+router.delete('/:id', (req, res) => {
+  handler(req, res, 'delete', './server/db/userCart.json');
 });
 
 module.exports = router;

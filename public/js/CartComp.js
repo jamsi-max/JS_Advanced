@@ -2,21 +2,24 @@ Vue.component('cart', {
     data(){
       return {
           imgCart: 'https://placehold.it/50x100',
-          cartUrl: '/getBasket.json',
+          cartUrl: '/api/cart/',
           cartItems: [],
           showCart: false,
       }
     },
     methods: {
-
         addProduct(product){
             let find = this.cartItems.find(el => el.id_product === product.id_product);
             if(find){
-                this.$parent.putJson(`/api/cart/${find.id_product}`, {quantity: 1});
-                find.quantity++;
+                this.$parent.putJson(`${this.cartUrl}+${find.id_product}`, {quantity: 1})
+                .then(data => {
+                    if (data.result === 1) {
+                        find.quantity++;
+                    }
+                });  
             } else {
                 let prod = Object.assign({quantity: 1}, product);
-                this.$parent.postJson('/api/cart', prod)
+                this.$parent.postJson(this.cartUrl, prod)
                   .then(data => {
                       if (data.result === 1) {
                           this.cartItems.push(prod);
@@ -25,20 +28,27 @@ Vue.component('cart', {
             }
         },
         remove(item) {
-            this.$parent.getJson(`${API}/deleteFromBasket.json`)
+            let find = this.cartItems.find(el => el.id_product === item.id_product);
+            if (find.quantity > 1){
+                this.$parent.putJson(`${this.cartUrl}+${find.id_product}`, {quantity: -1})
                 .then(data => {
-                    if(data.result === 1) {
-                        if(item.quantity>1){
-                            item.quantity--;
-                        } else {
-                            this.cartItems.splice(this.cartItems.indexOf(item), 1)
-                        }
+                    if (data.result === 1) {
+                        find.quantity--;
                     }
-                })
+                });
+            } else {
+                this.$parent.deleteJson(`${this.cartUrl}+${find.id_product}`, find)
+                .then(data => {
+                    if (data.result === 1) {
+                        this.cartItems.splice(this.cartItems.indexOf(find), 1);
+                    }
+                });
+            }
         },
     },
+
     mounted(){
-        this.$parent.getJson(`${API + this.cartUrl}`)
+        this.$parent.getJson(this.cartUrl)
             .then(data => {
                 for(let el of data.contents){
                     this.cartItems.push(el);
