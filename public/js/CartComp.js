@@ -11,7 +11,8 @@ Vue.component('cart', {
         addProduct(product){
             let find = this.cartItems.find(el => el.id_product === product.id_product);
             if(find){
-                this.$parent.putJson(`${this.cartUrl}+${find.id_product}`, {quantity: 1})
+                // this.$parent.putJson(`${this.cartUrl}+${find.id_product}`, {quantity: 1})
+                this.$parent.putJson(`${this.cartUrl}+${find.id_product}`, {quantity: 1, product_name: find.product_name})
                 .then(data => {
                     if (data.result === 1) {
                         find.quantity++;
@@ -30,14 +31,14 @@ Vue.component('cart', {
         remove(item) {
             let find = this.cartItems.find(el => el.id_product === item.id_product);
             if (find.quantity > 1){
-                this.$parent.putJson(`${this.cartUrl}+${find.id_product}`, {quantity: -1})
+                this.$parent.putJson(`${this.cartUrl}+${find.id_product}`, {quantity: -1, product_name: find.product_name})
                 .then(data => {
                     if (data.result === 1) {
                         find.quantity--;
                     }
                 });
             } else {
-                this.$parent.deleteJson(`${this.cartUrl}+${find.id_product}`, find)
+                this.$parent.deleteJson(`${this.cartUrl}+${find.id_product}`, {product_name: find.product_name})
                 .then(data => {
                     if (data.result === 1) {
                         this.cartItems.splice(this.cartItems.indexOf(find), 1);
